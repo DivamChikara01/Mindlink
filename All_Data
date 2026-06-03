@@ -1,45 +1,5 @@
 # MindLink Research Report Draft
 
-## Title
-MindLink: Personalized Baseline Deviation for Wearable Stress-Pattern Detection
-
-## Abstract
-MindLink is a wearable AI caregiver-support concept designed to detect physiological stress-pattern changes relative to an individual's baseline. The current prototype uses WESAD wrist-sensor data and compares general machine-learning classification with personalized baseline deviation. In subject-holdout testing, personalized baseline methods outperformed a general SVM-only classifier. The strongest sensor-ablation result used **EDA_BVP_TEMP** with **Combined SVM + baseline**, reaching **0.901 mean stress F1** and **0.947 mean stress recall**. These results support the idea that stress-pattern alerting should be personalized rather than based only on a one-size-fits-all model.
-
-## 1. Introduction
-Many caregiver-support tools rely on observation after stress or overload is already visible. MindLink explores whether wearable physiological data can provide earlier support signals by learning a person's normal baseline and detecting deviations from that baseline.
-
-This project does not attempt to detect exact emotions. The goal is to detect physiological stress-pattern changes and translate them into simple caregiver-facing signals.
-
-## 2. Research Question
-Can personalized physiological baseline deviation improve wearable stress-pattern alerting compared to a general machine-learning stress classifier?
-
-## 3. Dataset
-The prototype uses WESAD wrist-sensor data. The relevant signals include:
-- EDA: electrodermal activity / skin conductance
-- BVP: blood volume pulse / pulse waveform
-- TEMP: skin temperature
-- ACC: accelerometer movement
-
-Each sample window represents a 60-second segment of wearable sensor data.
-
-## 4. Methods
-The pipeline includes:
-1. Feature extraction from 60-second windows
-2. Subject-holdout validation
-3. SVM classifier training
-4. Personalized baseline deviation scoring
-5. Combined stress-score and baseline-deviation scoring
-6. Sensor ablation across different sensor groups
-
-Subject-holdout validation means the model is evaluated on a subject not included in training/tuning.
-
-## 5. Experiment 1: Personalized Systems Comparison
-
-Systems compared:
-1. SVM only
-2. Personalized baseline only
-3. Combined SVM + baseline
 
 ### Results
 | system                     |   mean_accuracy |   mean_stress_precision |   mean_stress_recall |   mean_stress_f1 |   total_false_stress_alerts |   total_missed_stress_windows |   weak_subjects_under_0_70_f1 |
@@ -79,19 +39,4 @@ Sensor sets tested:
 ### Interpretation
 The strongest sensor-ablation result used **EDA_BVP_TEMP** with **Combined SVM + baseline**. This suggests that selected physiological signals may outperform using all sensors indiscriminately.
 
-## 7. Discussion
-The results suggest that a one-size-fits-all stress classifier is not enough. Personalized baseline scoring improved stress-pattern detection and reduced weak-subject failures. This supports MindLink's core design: learn each user's baseline first, then detect deviations.
-
-## 8. Limitations
-This work is still a prototype. It uses public lab data, not original MindLink device data. The baseline calibration uses WESAD labels, which simulates but does not fully replicate real-world calibration. The system does not infer exact emotions and should not be described as a diagnostic or medical device.
-
-## 9. Future Work
-Next steps:
-1. Improve personalized baseline modeling
-2. Add explainability per sensor group
-3. Build a simple hardware data logger for EDA, PPG/BVP, and temperature
-4. Collect original data only under proper ethical approval and consent
-5. Test whether the system generalizes to real-world wearable conditions
-
-## 10. Conclusion
-MindLink's current results support a personalized baseline approach for wearable stress-pattern alerting. The best system achieved **0.901 mean stress F1** and **0.947 mean stress recall** using **EDA_BVP_TEMP**. The project is not yet a product or medical device, but it is now a legitimate research prototype with a clear experimental direction.
+_BVP_TEMP**. The project is not yet a product or medical device, but it is now a legitimate research prototype with a clear experimental direction.
