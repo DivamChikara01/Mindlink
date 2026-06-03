@@ -1,0 +1,60 @@
+MindLink Sensor Ablation Experiment
+========================================
+
+Research question:
+Which wearable sensor groups contribute most to MindLink stress-pattern detection?
+
+Systems tested:
+1. SVM only
+2. Personalized baseline only
+3. Combined SVM + baseline
+
+Validation:
+Outer subject-holdout testing. Thresholds and weights tuned on training subjects only.
+
+Summary:
+  sensor_set                     system  mean_accuracy  mean_stress_precision  mean_stress_recall  mean_stress_f1  total_false_stress_alerts  total_missed_stress_windows  weak_subjects_under_0_70_f1
+EDA_BVP_TEMP    Combined SVM + baseline       0.928641               0.867632            0.947101        0.901406                         50                           19                            1
+         ALL Personalized baseline only       0.915193               0.858101            0.915691        0.876035                         52                           30                            1
+EDA_BVP_TEMP Personalized baseline only       0.915193               0.858101            0.915691        0.876035                         52                           30                            1
+         ALL    Combined SVM + baseline       0.914394               0.858306            0.905667        0.870269                         49                           34                            2
+         ALL                   SVM only       0.839435               0.785493            0.859585        0.797936                        106                           51                            3
+    ACC_only    Combined SVM + baseline       0.813379               0.728373            0.815407        0.750049                        115                           68                            4
+    EDA_only Personalized baseline only       0.850976               0.775327            0.787598        0.747644                         67                           79                            4
+    BVP_only    Combined SVM + baseline       0.784365               0.692329            0.836674        0.745028                        151                           60                            6
+    EDA_only    Combined SVM + baseline       0.845925               0.774106            0.773709        0.739941                         67                           84                            4
+EDA_BVP_TEMP                   SVM only       0.792876               0.693695            0.815940        0.733096                        135                           68                            5
+    ACC_only Personalized baseline only       0.770967               0.641370            0.867446        0.730533                        176                           48                            4
+    BVP_only                   SVM only       0.753384               0.682262            0.828051        0.727419                        178                           63                            6
+     EDA_BVP Personalized baseline only       0.830332               0.751596            0.764531        0.724174                         79                           87                            4
+     EDA_BVP    Combined SVM + baseline       0.822805               0.766906            0.770904        0.718971                         88                           85                            5
+    ACC_only                   SVM only       0.762480               0.709010            0.809468        0.712675                        163                           70                            6
+     EDA_BVP                   SVM only       0.720810               0.647832            0.854829        0.705981                        219                           54                            7
+   TEMP_only                   SVM only       0.684230               0.627022            0.893803        0.692017                        270                           38                           10
+    EDA_only                   SVM only       0.705862               0.621979            0.777460        0.669607                        208                           81                            8
+   TEMP_only    Combined SVM + baseline       0.797862               0.624147            0.716908        0.637479                         94                          104                            6
+   TEMP_only Personalized baseline only       0.798242               0.670272            0.686019        0.626011                         83                          115                            6
+    BVP_only Personalized baseline only       0.656308               0.520578            0.687685        0.584708                        222                          114                           13
+
+Best sensor sets by system:
+  sensor_set                     system  mean_accuracy  mean_stress_precision  mean_stress_recall  mean_stress_f1  total_false_stress_alerts  total_missed_stress_windows  weak_subjects_under_0_70_f1
+EDA_BVP_TEMP    Combined SVM + baseline       0.928641               0.867632            0.947101        0.901406                         50                           19                            1
+         ALL    Combined SVM + baseline       0.914394               0.858306            0.905667        0.870269                         49                           34                            2
+    ACC_only    Combined SVM + baseline       0.813379               0.728373            0.815407        0.750049                        115                           68                            4
+         ALL Personalized baseline only       0.915193               0.858101            0.915691        0.876035                         52                           30                            1
+EDA_BVP_TEMP Personalized baseline only       0.915193               0.858101            0.915691        0.876035                         52                           30                            1
+    EDA_only Personalized baseline only       0.850976               0.775327            0.787598        0.747644                         67                           79                            4
+         ALL                   SVM only       0.839435               0.785493            0.859585        0.797936                        106                           51                            3
+EDA_BVP_TEMP                   SVM only       0.792876               0.693695            0.815940        0.733096                        135                           68                            5
+    BVP_only                   SVM only       0.753384               0.682262            0.828051        0.727419                        178                           63                            6
+
+Interpretation guidance:
+- Highest stress F1 = best balanced stress detection.
+- Highest stress recall = catches more stress windows.
+- Fewer false stress alerts = less caregiver alert fatigue.
+- Fewer missed stress windows = safer caregiver-support behavior.
+
+Limitations:
+- WESAD is lab data, not original MindLink wristband data.
+- Personalized baseline uses WESAD baseline labels as simulated calibration.
+- This is not emotion detection and not medical diagnosis.
