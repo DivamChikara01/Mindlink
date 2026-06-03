@@ -38,7 +38,7 @@ Compared with SVM-only:
 - SVM-only missed stress windows: **51**
 - SVM-only false stress alerts: **106**
 
-## Sensor ablation finding
+## Sensor finding
 Best sensor-ablation result:
 - Sensor set: **EDA_BVP_TEMP**
 - System: **Combined SVM + baseline**
@@ -47,12 +47,3 @@ Best sensor-ablation result:
 - Mean stress F1: **0.901**
 - Missed stress windows: **19**
 
-## Honest limitations
-- This is not emotion detection.
-- This is not medical diagnosis.
-- WESAD is lab data, not original MindLink wristband data.
-- Personalized baseline uses labeled baseline windows as a simulated calibration period.
-- Real use would require ethical approval, consent, original sensor data, and user-specific validation.
-
-## Next step
-Build a cleaned GitHub repository, prepare a 60–90 second demo video, and seek research feedback on improving the personalized baseline method.
