@@ -38,5 +38,3 @@ Sensor sets tested:
 
 ### Interpretation
 The strongest sensor-ablation result used **EDA_BVP_TEMP** with **Combined SVM + baseline**. This suggests that selected physiological signals may outperform using all sensors indiscriminately.
-
-_BVP_TEMP**. The project is not yet a product or medical device, but it is now a legitimate research prototype with a clear experimental direction.
